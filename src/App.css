@@ -1,0 +1,18 @@
+body {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.searchresultitem {
+  border: 1px solid #ccc;
+  list-style-type: none;
+  display: flex;
+  
+}
+
+.searchresultitem__image {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  background-size: cover;
+}
