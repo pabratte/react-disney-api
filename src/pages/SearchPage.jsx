@@ -6,23 +6,27 @@ import { useState } from "react";
 
 export default function SearchPage() {
     const [isLoading, setIslLoading] = useState(false);
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState(undefined);
     
-
     function onSearch(searchTerm) {
         setIslLoading(true);
         axios.get(`https://api.disneyapi.dev/character?name=${searchTerm}`)
         .then(function (response) {
             setIslLoading(false);
-            setSearchResults(response.data.data);
+            if(response.data.info.count === 1){
+                // if only one result, data is not an array
+                setSearchResults([response.data.data]);
+            } else {
+                setSearchResults(response.data.data);
+            }
+            
           })
     }
 
     return (
         <>
-        <SearchBar onSearch={onSearch}></SearchBar>
-        {isLoading?<LoadingSpinner/>:<SearchResults results={searchResults}></SearchResults>}
+            <SearchBar onSearch={onSearch} isLoading={isLoading}></SearchBar>
+            {isLoading?<LoadingSpinner/>:<SearchResults results={searchResults}></SearchResults>}
         </>
     )
-
 }

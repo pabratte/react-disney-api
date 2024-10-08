@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import CharacterDetail from '../components/CharacterDetail';
@@ -18,11 +18,7 @@ export default function DetailPage () {
     
     return (
         <div>
-            <h1>Character details</h1>
-            <Link to="/">Back to search</Link>
             {isLoading?<LoadingSpinner/>:<CharacterDetail characterInfo={info}></CharacterDetail>}
-            
-            
         </div>
     )
 }
